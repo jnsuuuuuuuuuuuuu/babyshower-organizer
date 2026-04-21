@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Firebase Debug</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f0f0f0; }
+        .log { background: white; padding: 20px; border-radius: 5px; margin: 10px 0; }
+        .error { color: red; font-weight: bold; }
+        .success { color: green; font-weight: bold; }
+        .info { color: blue; }
+        pre { background: #f5f5f5; padding: 10px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>🔧 Firebase Debug Console</h1>
+    <div id="output"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js"></script>
+
+    <script>
+        const output = document.getElementById('output');
+
+        function log(message, type = 'info') {
+            const time = new Date().toLocaleTimeString();
+            const className = type === 'error' ? 'error' : type === 'success' ? 'success' : 'info';
+            output.innerHTML += `<div class="log"><span class="${className}">[${time}]</span> ${message}</div>`;
+            console.log(message);
+        }
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDdLV2Bh5xuo0Bo7UPPhr7Sy7CqD1q9EJM",
+            authDomain: "babyshower-organizer.firebaseapp.com",
+            databaseURL: "https://babyshower-organizer-default-rtdb.firebaseio.com",
+            projectId: "babyshower-organizer",
+            storageBucket: "babyshower-organizer.firebasestorage.app",
+            messagingSenderId: "546416367820",
+            appId: "1:546416367820:web:c0d8d407e1bf23a95f0a69"
+        };
+
+        log('Inicializando Firebase...', 'info');
+
+        try {
+            const app = firebase.initializeApp(firebaseConfig);
+            log('✓ Firebase inicializado correctamente', 'success');
+        } catch (e) {
+            log('✗ Error inicializando Firebase: ' + e.message, 'error');
+        }
+
+        const db = firebase.database();
+        log('Conectando a Base de Datos...', 'info');
+
+        // Test 1: Leer datos
+        log('Test 1: Leyendo datos existentes...', 'info');
+        db.ref('tasks').once('value').then((snapshot) => {
+            const data = snapshot.val();
+            log('✓ Datos leídos: ' + JSON.stringify(data), 'success');
+        }).catch((error) => {
+            log('✗ Error leyendo: ' + error.message, 'error');
+        });
+
+        // Test 2: Escribir un dato de prueba
+        setTimeout(() => {
+            log('Test 2: Escribiendo dato de prueba...', 'info');
+            const testId = 'test-' + Date.now();
+            db.ref('tasks/' + testId).set({
+                checked: false,
+                label: 'Tarea de prueba',
+                createdAt: new Date().toISOString()
+            }).then(() => {
+                log('✓ Dato escrito exitosamente (ID: ' + testId + ')', 'success');
+                
+                // Verificar que se escribió
+                db.ref('tasks/' + testId).once('value').then((snapshot) => {
+                    log('✓ Verificación: ' + JSON.stringify(snapshot.val()), 'success');
+                });
+            }).catch((error) => {
+                log('✗ Error escribiendo: ' + error.message, 'error');
+            });
+        }, 2000);
+    </script>
+</body>
+</html>
