@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉 Organizador Baby Shower - Mi Embarazo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>🎀 Mi Organizador Baby Shower</h1>
+                <div class="info-embarazo">
+                    <p><strong>Semanas:</strong> <span id="semanas">34</span> | <strong>Fecha Parto:</strong> 2 de junio | <strong>Baby Shower:</strong> 10 de mayo</p>
+                </div>
+            </div>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="dashboard">📊 Dashboard</button>
+            <button class="tab-btn" data-tab="baby-shower">🎊 Baby Shower</button>
+            <button class="tab-btn" data-tab="mudanza">🏠 Mudanza</button>
+            <button class="tab-btn" data-tab="bebe">👶 Cosas Bebé</button>
+            <button class="tab-btn" data-tab="depa">🛋️ Casa/Depa</button>
+            <button class="tab-btn" data-tab="manualidades">🧶 Manualidades</button>
+        </nav>
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="tab-content active">
+            <h2>📊 Tu Progreso General</h2>
+            <div class="dashboard-grid">
+                <div class="progress-card">
+                    <h3>Baby Shower</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-babyshower" style="width: 0%"></div>
+                    </div>
+                    <p id="percent-babyshower">0% completado</p>
+                </div>
+                <div class="progress-card">
+                    <h3>Mudanza</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-mudanza" style="width: 0%"></div>
+                    </div>
+                    <p id="percent-mudanza">0% completado</p>
+                </div>
+                <div class="progress-card">
+                    <h3>Cosas Bebé</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-bebe" style="width: 0%"></div>
+                    </div>
+                    <p id="percent-bebe">0% completado</p>
+                </div>
+                <div class="progress-card">
+                    <h3>Casa/Depa</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-depa" style="width: 0%"></div>
+                    </div>
+                    <p id="percent-depa">0% completado</p>
+                </div>
+            </div>
+
+            <div class="timeline">
+                <h3>📅 Timeline Importante</h3>
+                <div class="timeline-item upcoming">
+                    <strong>10 de mayo</strong> - Baby Shower 🎉
+                </div>
+                <div class="timeline-item upcoming">
+                    <strong>2 de junio (aprox)</strong> - Fecha de Parto Estimada 👶
+                </div>
+            </div>
+
+            <div class="stats">
+                <h3>📈 Estadísticas</h3>
+                <p>Total tareas: <strong id="total-tasks">0</strong></p>
+                <p>Tareas completadas: <strong id="completed-tasks">0</strong></p>
+                <p>Tareas pendientes: <strong id="pending-tasks">0</strong></p>
+            </div>
+        </section>
+
+        <!-- BABY SHOWER -->
+        <section id="baby-shower" class="tab-content">
+            <div class="section-header">
+                <h2>🎊 Baby Shower - 10 de Mayo</h2>
+                <button class="add-btn" onclick="addTask('baby-shower')">+ Agregar Tarea</button>
+            </div>
+
+            <div class="checklist-container">
+                <!-- PRE-PLANNING -->
+                <div class="category">
+                    <h3>📋 PRE-PLANNING ESENCIAL</h3>
+                    <div class="tasks" id="preplanning">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Lista de invitados</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Definir temática</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Establecer presupuesto</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INVITACIONES -->
+                <div class="category">
+                    <h3>📮 INVITACIONES</h3>
+                    <div class="tasks" id="invitaciones">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Diseñar invitaciones</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Enviar invitaciones</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Confirmar asistencia</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RECUERDITOS -->
+                <div class="category">
+                    <h3>🎁 RECUERDITOS</h3>
+                    <div class="tasks" id="recuerditos">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Llavero tejido</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Vela aromática</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Tarjetita de oración</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Pelota antiestrés</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DECORACIÓN -->
+                <div class="category">
+                    <h3>✨ DECORACIÓN</h3>
+                    <div class="tasks" id="decoracion">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Globos, banners y guirnaldas</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Centro de espacio, Letras, Luces</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Manteles, centros de mesa, rosones</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Vasos, cubiertos, cups</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Estación de fotos</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Mesa de recepción</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Calendario de adivinanza de fecha de parto</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Cuadritos de frases nube y caretas bigote</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Mesa de tatuajes temporales</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REGALOS Y FAVORES -->
+                <div class="category">
+                    <h3>🎀 REGALOS Y FAVORES</h3>
+                    <div class="tasks" id="regalos">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Mesa de regalos con caja de cartas</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Libro de recomendaciones (mamá y papá)</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Libro de mensajitos y dedicatorias</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COMIDA Y BEBIDAS -->
+                <div class="category">
+                    <h3>🍰 COMIDA Y BEBIDAS</h3>
+                    <div class="tasks" id="comida">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Torta/Pizza</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Bocaditos buffet</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Dulces y premios</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Jugos o refrescos</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Canasta de agradecimiento</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JUEGOS Y DIVERSIÓN -->
+                <div class="category">
+                    <h3>🎮 JUEGOS Y DIVERSIÓN</h3>
+                    <div class="tasks" id="juegos">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Juego: Cuadritos pintados</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Playlist de música</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Payasito/Animador</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Mantita a crochet para premios</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ESTILO Y APARIENCIA -->
+                <div class="category">
+                    <h3>👗 ESTILO Y APARIENCIA</h3>
+                    <div class="tasks" id="estilo">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Ropa temática</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Peinado y maquillaje temático</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Corona de flores para mamá (crochet)</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FOTOGRAFÍA -->
+                <div class="category">
+                    <h3>📸 FOTOGRAFÍA Y RECUERDOS</h3>
+                    <div class="tasks" id="fotos">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Foto de todos</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Foto de familia</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <label>Foto de mamá/papá</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MUDANZA -->
+        <section id="mudanza" class="tab-content">
+            <div class="section-header">
+                <h2>🏠 Checklist de Mudanza</h2>
+                <button class="add-btn" onclick="addTask('mudanza')">+ Agregar Tarea</button>
+            </div>
+            <div class="checklist-container">
+                <div class="category">
+                    <h3>📦 Empaque y Organización</h3>
+                    <div class="tasks" id="mudanza">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('mudanza')">
+                            <label>Hacer inventario de cosas a llevar</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('mudanza')">
+                            <label>Conseguir cajas y materiales</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('mudanza')">
+                            <label>Empacar ropa</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('mudanza')">
+                            <label>Empacar documentos importantes</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('mudanza')">
+                            <label>Empacar artículos frágiles</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('mudanza')">
+                            <label>Empacar decoraciones</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <h3>🚚 Logística</h3>
+                    <div class="tasks" id="mudanza">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('mudanza')">
+                            <label>Contratar servicio de mudanza</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('mudanza')">
+                            <label>Confirmar fecha de mudanza</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('mudanza')">
+                            <label>Cambio de dirección en servicios</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COSAS BEBÉ -->
+        <section id="bebe" class="tab-content">
+            <div class="section-header">
+                <h2>👶 Checklist Bebé - Primeros Meses</h2>
+                <button class="add-btn" onclick="addTask('bebe')">+ Agregar Tarea</button>
+            </div>
+            <div class="checklist-container">
+                <div class="category">
+                    <h3>👕 Ropa y Pañales</h3>
+                    <div class="tasks" id="bebe">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <label>Bodies (recién nacido y 0-3 meses)</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <label>Pañales RN y talla 1</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <label>Toallitas húmedas</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <label>Gorros y guantes</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <label>Calcetines y medias</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <h3>🍼 Alimentación</h3>
+                    <div class="tasks" id="bebe">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <label>Botellas de vidrio o plástico</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <label>Teteros varios tamaños</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <label>Fórmula infantil (si no amamantas)</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <label>Baberos y protectores de sábanas</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <h3>🛏️ Descanso</h3>
+                    <div class="tasks" id="bebe">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <label>Cuna o moisés</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <label>Sábanas ajustables (4-6)</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <label>Mantas y cobijas seguras</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <label>Protector de cuna</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <h3>🛁 Higiene y Cuidado</h3>
+                    <div class="tasks" id="bebe">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <label>Shampoo y gel de baño para bebé</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <label>Toalla de baño suave</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <label>Bañera o asiento de baño</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <label>Crema para pañal</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <label>Termómetro digital</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <h3>🧸 Transporte y Movilidad</h3>
+                    <div class="tasks" id="bebe">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <label>Coche/carriola</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <label>Portabebé o mochila ergonómica</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <label>Asiento de auto</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CASA/DEPA -->
+        <section id="depa" class="tab-content">
+            <div class="section-header">
+                <h2>🛋️ Checklist Casa/Depa - Essentials</h2>
+                <button class="add-btn" onclick="addTask('depa')">+ Agregar Tarea</button>
+            </div>
+            <div class="checklist-container">
+                <div class="category">
+                    <h3>🍴 Cocina</h3>
+                    <div class="tasks" id="depa">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Refrigerador</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Estufa/Cocineta</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Licuadora</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Ollas y sartenes</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Vajilla y cubiertos</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Vasos y tazas</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Tabla de cortar y cuchillos</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Detergente lavavajilla</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <h3>🧺 Lavandería</h3>
+                    <div class="tasks" id="depa">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Lavadora</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Detergente para ropa</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Suavizante</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Cesto de ropa</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <h3>🧹 Limpieza</h3>
+                    <div class="tasks" id="depa">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Escoba y recogedor</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Trapero y trapos</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Productos de limpieza</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Guantes de limpieza</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <h3>🛏️ Habitación</h3>
+                    <div class="tasks" id="depa">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Cama para adultos</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Sábanas y almohadas</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Colchón</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <h3>🚿 Baño</h3>
+                    <div class="tasks" id="depa">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Espejo</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Shampoo y jabón</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Toallas de baño</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Cortina de baño</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <label>Papel higiénico</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MANUALIDADES -->
+        <section id="manualidades" class="tab-content">
+            <div class="section-header">
+                <h2>🧶 Checklist Manualidades y Proyectos</h2>
+                <button class="add-btn" onclick="addTask('manualidades')">+ Agregar Tarea</button>
+            </div>
+            <div class="checklist-container">
+                <div class="category">
+                    <h3>🧶 Crochet/Tejido para Bebé</h3>
+                    <div class="tasks" id="manualidades">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('manualidades')">
+                            <label>Tejer mantitas para bebé</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('manualidades')">
+                            <label>Tejer gorritos</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('manualidades')">
+                            <label>Tejer camita/cuna</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('manualidades')">
+                            <label>Tejer booties (botitas)</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <h3>🧶 Crochet para Baby Shower</h3>
+                    <div class="tasks" id="manualidades">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('manualidades')">
+                            <label>Mantita a crochet para premios</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('manualidades')">
+                            <label>Corona de flores para mamá</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('manualidades')">
+                            <label>Llaveros tejidos para recuerditos</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <h3>✨ Otros Proyectos</h3>
+                    <div class="tasks" id="manualidades">
+                        <div class="task-item">
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('manualidades')">
+                            <label>Decoraciones personalizadas</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>Creado con ❤️ para tu embarazo y tu bebé | Última actualización: {{ current_date }}</p>
+        <p>💪 ¡Tú puedes! Falta poco para conocer a tu bebé 👶</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
