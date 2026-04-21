@@ -1,10 +1,30 @@
-// Firebase sync
-let syncingData = false;
+import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
+
+// Variables globales
+let db = null;
+let tasksRef = null;
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Esperar a que Firebase esté listo
+    setTimeout(() => {
+        initializeApp();
+    }, 500);
+});
+
+// Inicializar la app
+function initializeApp() {
+    db = window.db;
+    if (!db) {
+        console.log('Esperando Firebase...');
+        setTimeout(initializeApp, 500);
+        return;
+    }
+
+    tasksRef = ref(db, 'tasks');
     setupTabs();
     loadDataFromFirebase();
-});
+    updateSyncStatus('✅ Conectado');
+}
 
 // Setup tabs
 function setupTabs() {
@@ -26,17 +46,18 @@ function setupTabs() {
 
 // Load data from Firebase
 function loadDataFromFirebase() {
-    if (!window.db) {
-        console.log('Firebase not initialized yet');
-        setTimeout(loadDataFromFirebase, 1000);
+    if (!tasksRef) {
+        console.log('Tasksref no está listo');
+        setTimeout(loadDataFromFirebase, 500);
         return;
     }
 
-    updateSyncStatus('🔄 Sincronizando...');
+    updateSyncStatus('🔄 Cargando datos...');
 
-    window.db.ref('tasks').on('value', function(snapshot) {
+    onValue(tasksRef, (snapshot) => {
         const data = snapshot.val() || {};
         
+        // Cargar todos los checkboxes desde Firebase
         Object.keys(data).forEach(taskId => {
             const checkbox = document.querySelector(`[data-task-id="${taskId}"]`);
             if (checkbox) {
@@ -46,11 +67,9 @@ function loadDataFromFirebase() {
 
         updateAllProgress();
         updateSyncStatus('✅ Sincronizado');
-        
-        setTimeout(() => {
-            const status = document.getElementById('sync-status');
-            if (status) status.textContent = '✅ Sincronizado';
-        }, 2000);
+    }, (error) => {
+        console.error('Error cargando datos:', error);
+        updateSyncStatus('❌ Error de sincronización');
     });
 }
 
@@ -59,11 +78,19 @@ function updateTask(checkbox) {
     const taskId = checkbox.getAttribute('data-task-id');
     const isChecked = checkbox.checked;
 
-    if (window.db) {
-        window.db.ref('tasks/' + taskId).set({
+    if (db) {
+        updateSyncStatus('🔄 Guardando...');
+        
+        const taskRef = ref(db, 'tasks/' + taskId);
+        set(taskRef, {
             checked: isChecked,
             label: checkbox.nextElementSibling.textContent,
             lastUpdated: new Date().toISOString()
+        }).then(() => {
+            updateSyncStatus('✅ Sincronizado');
+        }).catch((error) => {
+            console.error('Error guardando:', error);
+            updateSyncStatus('❌ Error');
         });
     }
 
@@ -126,12 +153,19 @@ function addTask(section) {
         `;
         tasksContainer.appendChild(newTask);
 
-        if (window.db) {
-            window.db.ref('tasks/' + taskId).set({
+        if (db) {
+            updateSyncStatus('🔄 Agregando tarea...');
+            const taskRef = ref(db, 'tasks/' + taskId);
+            set(taskRef, {
                 checked: false,
                 label: taskName,
                 section: section,
                 createdAt: new Date().toISOString()
+            }).then(() => {
+                updateSyncStatus('✅ Sincronizado');
+            }).catch((error) => {
+                console.error('Error agregando tarea:', error);
+                updateSyncStatus('❌ Error');
             });
         }
 
