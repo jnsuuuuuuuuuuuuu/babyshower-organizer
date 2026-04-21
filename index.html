@@ -13,6 +13,7 @@
                 <h1>🎀 Mi Organizador Baby Shower</h1>
                 <div class="info-embarazo">
                     <p><strong>Semanas:</strong> <span id="semanas">34</span> | <strong>Fecha Parto:</strong> 2 de junio | <strong>Baby Shower:</strong> 10 de mayo</p>
+                    <p style="font-size: 0.9em; margin-top: 10px;"><span id="sync-status">🔄 Sincronizando...</span></p>
                 </div>
             </div>
         </header>
@@ -91,15 +92,15 @@
                     <h3>📋 PRE-PLANNING ESENCIAL</h3>
                     <div class="tasks" id="preplanning">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-1" onchange="updateTask(this)">
                             <label>Lista de invitados</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-2" onchange="updateTask(this)">
                             <label>Definir temática</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-3" onchange="updateTask(this)">
                             <label>Establecer presupuesto</label>
                         </div>
                     </div>
@@ -110,15 +111,15 @@
                     <h3>📮 INVITACIONES</h3>
                     <div class="tasks" id="invitaciones">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-4" onchange="updateTask(this)">
                             <label>Diseñar invitaciones</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-5" onchange="updateTask(this)">
                             <label>Enviar invitaciones</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-6" onchange="updateTask(this)">
                             <label>Confirmar asistencia</label>
                         </div>
                     </div>
@@ -129,19 +130,19 @@
                     <h3>🎁 RECUERDITOS</h3>
                     <div class="tasks" id="recuerditos">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-7" onchange="updateTask(this)">
                             <label>Llavero tejido</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-8" onchange="updateTask(this)">
                             <label>Vela aromática</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-9" onchange="updateTask(this)">
                             <label>Tarjetita de oración</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-10" onchange="updateTask(this)">
                             <label>Pelota antiestrés</label>
                         </div>
                     </div>
@@ -152,39 +153,39 @@
                     <h3>✨ DECORACIÓN</h3>
                     <div class="tasks" id="decoracion">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-11" onchange="updateTask(this)">
                             <label>Globos, banners y guirnaldas</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-12" onchange="updateTask(this)">
                             <label>Centro de espacio, Letras, Luces</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-13" onchange="updateTask(this)">
                             <label>Manteles, centros de mesa, rosones</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-14" onchange="updateTask(this)">
                             <label>Vasos, cubiertos, cups</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-15" onchange="updateTask(this)">
                             <label>Estación de fotos</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-16" onchange="updateTask(this)">
                             <label>Mesa de recepción</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-17" onchange="updateTask(this)">
                             <label>Calendario de adivinanza de fecha de parto</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-18" onchange="updateTask(this)">
                             <label>Cuadritos de frases nube y caretas bigote</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-19" onchange="updateTask(this)">
                             <label>Mesa de tatuajes temporales</label>
                         </div>
                     </div>
@@ -195,15 +196,15 @@
                     <h3>🎀 REGALOS Y FAVORES</h3>
                     <div class="tasks" id="regalos">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-20" onchange="updateTask(this)">
                             <label>Mesa de regalos con caja de cartas</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-21" onchange="updateTask(this)">
                             <label>Libro de recomendaciones (mamá y papá)</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-22" onchange="updateTask(this)">
                             <label>Libro de mensajitos y dedicatorias</label>
                         </div>
                     </div>
@@ -214,23 +215,23 @@
                     <h3>🍰 COMIDA Y BEBIDAS</h3>
                     <div class="tasks" id="comida">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-23" onchange="updateTask(this)">
                             <label>Torta/Pizza</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-24" onchange="updateTask(this)">
                             <label>Bocaditos buffet</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-25" onchange="updateTask(this)">
                             <label>Dulces y premios</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-26" onchange="updateTask(this)">
                             <label>Jugos o refrescos</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-27" onchange="updateTask(this)">
                             <label>Canasta de agradecimiento</label>
                         </div>
                     </div>
@@ -241,19 +242,19 @@
                     <h3>🎮 JUEGOS Y DIVERSIÓN</h3>
                     <div class="tasks" id="juegos">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-28" onchange="updateTask(this)">
                             <label>Juego: Cuadritos pintados</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-29" onchange="updateTask(this)">
                             <label>Playlist de música</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-30" onchange="updateTask(this)">
                             <label>Payasito/Animador</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-31" onchange="updateTask(this)">
                             <label>Mantita a crochet para premios</label>
                         </div>
                     </div>
@@ -264,15 +265,15 @@
                     <h3>👗 ESTILO Y APARIENCIA</h3>
                     <div class="tasks" id="estilo">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-32" onchange="updateTask(this)">
                             <label>Ropa temática</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-33" onchange="updateTask(this)">
                             <label>Peinado y maquillaje temático</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-34" onchange="updateTask(this)">
                             <label>Corona de flores para mamá (crochet)</label>
                         </div>
                     </div>
@@ -283,15 +284,15 @@
                     <h3>📸 FOTOGRAFÍA Y RECUERDOS</h3>
                     <div class="tasks" id="fotos">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-35" onchange="updateTask(this)">
                             <label>Foto de todos</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-36" onchange="updateTask(this)">
                             <label>Foto de familia</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('baby-shower')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="bs-37" onchange="updateTask(this)">
                             <label>Foto de mamá/papá</label>
                         </div>
                     </div>
@@ -310,27 +311,27 @@
                     <h3>📦 Empaque y Organización</h3>
                     <div class="tasks" id="mudanza">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('mudanza')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="mud-1" onchange="updateTask(this)">
                             <label>Hacer inventario de cosas a llevar</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('mudanza')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="mud-2" onchange="updateTask(this)">
                             <label>Conseguir cajas y materiales</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('mudanza')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="mud-3" onchange="updateTask(this)">
                             <label>Empacar ropa</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('mudanza')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="mud-4" onchange="updateTask(this)">
                             <label>Empacar documentos importantes</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('mudanza')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="mud-5" onchange="updateTask(this)">
                             <label>Empacar artículos frágiles</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('mudanza')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="mud-6" onchange="updateTask(this)">
                             <label>Empacar decoraciones</label>
                         </div>
                     </div>
@@ -339,15 +340,15 @@
                     <h3>🚚 Logística</h3>
                     <div class="tasks" id="mudanza">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('mudanza')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="mud-7" onchange="updateTask(this)">
                             <label>Contratar servicio de mudanza</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('mudanza')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="mud-8" onchange="updateTask(this)">
                             <label>Confirmar fecha de mudanza</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('mudanza')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="mud-9" onchange="updateTask(this)">
                             <label>Cambio de dirección en servicios</label>
                         </div>
                     </div>
@@ -366,23 +367,23 @@
                     <h3>👕 Ropa y Pañales</h3>
                     <div class="tasks" id="bebe">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="beb-1" onchange="updateTask(this)">
                             <label>Bodies (recién nacido y 0-3 meses)</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="beb-2" onchange="updateTask(this)">
                             <label>Pañales RN y talla 1</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="beb-3" onchange="updateTask(this)">
                             <label>Toallitas húmedas</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="beb-4" onchange="updateTask(this)">
                             <label>Gorros y guantes</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="beb-5" onchange="updateTask(this)">
                             <label>Calcetines y medias</label>
                         </div>
                     </div>
@@ -391,19 +392,19 @@
                     <h3>🍼 Alimentación</h3>
                     <div class="tasks" id="bebe">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="beb-6" onchange="updateTask(this)">
                             <label>Botellas de vidrio o plástico</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="beb-7" onchange="updateTask(this)">
                             <label>Teteros varios tamaños</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="beb-8" onchange="updateTask(this)">
                             <label>Fórmula infantil (si no amamantas)</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="beb-9" onchange="updateTask(this)">
                             <label>Baberos y protectores de sábanas</label>
                         </div>
                     </div>
@@ -412,19 +413,19 @@
                     <h3>🛏️ Descanso</h3>
                     <div class="tasks" id="bebe">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="beb-10" onchange="updateTask(this)">
                             <label>Cuna o moisés</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="beb-11" onchange="updateTask(this)">
                             <label>Sábanas ajustables (4-6)</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="beb-12" onchange="updateTask(this)">
                             <label>Mantas y cobijas seguras</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="beb-13" onchange="updateTask(this)">
                             <label>Protector de cuna</label>
                         </div>
                     </div>
@@ -433,23 +434,23 @@
                     <h3>🛁 Higiene y Cuidado</h3>
                     <div class="tasks" id="bebe">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="beb-14" onchange="updateTask(this)">
                             <label>Shampoo y gel de baño para bebé</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="beb-15" onchange="updateTask(this)">
                             <label>Toalla de baño suave</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="beb-16" onchange="updateTask(this)">
                             <label>Bañera o asiento de baño</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="beb-17" onchange="updateTask(this)">
                             <label>Crema para pañal</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="beb-18" onchange="updateTask(this)">
                             <label>Termómetro digital</label>
                         </div>
                     </div>
@@ -458,15 +459,15 @@
                     <h3>🧸 Transporte y Movilidad</h3>
                     <div class="tasks" id="bebe">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="beb-19" onchange="updateTask(this)">
                             <label>Coche/carriola</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="beb-20" onchange="updateTask(this)">
                             <label>Portabebé o mochila ergonómica</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('bebe')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="beb-21" onchange="updateTask(this)">
                             <label>Asiento de auto</label>
                         </div>
                     </div>
@@ -485,35 +486,35 @@
                     <h3>🍴 Cocina</h3>
                     <div class="tasks" id="depa">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-1" onchange="updateTask(this)">
                             <label>Refrigerador</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-2" onchange="updateTask(this)">
                             <label>Estufa/Cocineta</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-3" onchange="updateTask(this)">
                             <label>Licuadora</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-4" onchange="updateTask(this)">
                             <label>Ollas y sartenes</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-5" onchange="updateTask(this)">
                             <label>Vajilla y cubiertos</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-6" onchange="updateTask(this)">
                             <label>Vasos y tazas</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-7" onchange="updateTask(this)">
                             <label>Tabla de cortar y cuchillos</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-8" onchange="updateTask(this)">
                             <label>Detergente lavavajilla</label>
                         </div>
                     </div>
@@ -522,19 +523,19 @@
                     <h3>🧺 Lavandería</h3>
                     <div class="tasks" id="depa">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-9" onchange="updateTask(this)">
                             <label>Lavadora</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-10" onchange="updateTask(this)">
                             <label>Detergente para ropa</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-11" onchange="updateTask(this)">
                             <label>Suavizante</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-12" onchange="updateTask(this)">
                             <label>Cesto de ropa</label>
                         </div>
                     </div>
@@ -543,19 +544,19 @@
                     <h3>🧹 Limpieza</h3>
                     <div class="tasks" id="depa">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-13" onchange="updateTask(this)">
                             <label>Escoba y recogedor</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-14" onchange="updateTask(this)">
                             <label>Trapero y trapos</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-15" onchange="updateTask(this)">
                             <label>Productos de limpieza</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-16" onchange="updateTask(this)">
                             <label>Guantes de limpieza</label>
                         </div>
                     </div>
@@ -564,15 +565,15 @@
                     <h3>🛏️ Habitación</h3>
                     <div class="tasks" id="depa">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-17" onchange="updateTask(this)">
                             <label>Cama para adultos</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-18" onchange="updateTask(this)">
                             <label>Sábanas y almohadas</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-19" onchange="updateTask(this)">
                             <label>Colchón</label>
                         </div>
                     </div>
@@ -581,23 +582,23 @@
                     <h3>🚿 Baño</h3>
                     <div class="tasks" id="depa">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-20" onchange="updateTask(this)">
                             <label>Espejo</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-21" onchange="updateTask(this)">
                             <label>Shampoo y jabón</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-22" onchange="updateTask(this)">
                             <label>Toallas de baño</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-23" onchange="updateTask(this)">
                             <label>Cortina de baño</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('depa')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="dep-24" onchange="updateTask(this)">
                             <label>Papel higiénico</label>
                         </div>
                     </div>
@@ -616,19 +617,19 @@
                     <h3>🧶 Crochet/Tejido para Bebé</h3>
                     <div class="tasks" id="manualidades">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('manualidades')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="man-1" onchange="updateTask(this)">
                             <label>Tejer mantitas para bebé</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('manualidades')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="man-2" onchange="updateTask(this)">
                             <label>Tejer gorritos</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('manualidades')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="man-3" onchange="updateTask(this)">
                             <label>Tejer camita/cuna</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('manualidades')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="man-4" onchange="updateTask(this)">
                             <label>Tejer booties (botitas)</label>
                         </div>
                     </div>
@@ -637,15 +638,15 @@
                     <h3>🧶 Crochet para Baby Shower</h3>
                     <div class="tasks" id="manualidades">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('manualidades')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="man-5" onchange="updateTask(this)">
                             <label>Mantita a crochet para premios</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('manualidades')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="man-6" onchange="updateTask(this)">
                             <label>Corona de flores para mamá</label>
                         </div>
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('manualidades')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="man-7" onchange="updateTask(this)">
                             <label>Llaveros tejidos para recuerditos</label>
                         </div>
                     </div>
@@ -654,7 +655,7 @@
                     <h3>✨ Otros Proyectos</h3>
                     <div class="tasks" id="manualidades">
                         <div class="task-item">
-                            <input type="checkbox" class="task-checkbox" onchange="updateProgress('manualidades')">
+                            <input type="checkbox" class="task-checkbox" data-task-id="man-8" onchange="updateTask(this)">
                             <label>Decoraciones personalizadas</label>
                         </div>
                     </div>
@@ -664,10 +665,14 @@
     </div>
 
     <footer>
-        <p>Creado con ❤️ para tu embarazo y tu bebé | Última actualización: {{ current_date }}</p>
+        <p>Creado con ❤️ para tu embarazo y tu bebé</p>
         <p>💪 ¡Tú puedes! Falta poco para conocer a tu bebé 👶</p>
     </footer>
 
+    <!-- Firebase Script -->
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js"></script>
+    <script src="config.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

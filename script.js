@@ -1,19 +1,12 @@
-// Datos guardados en localStorage
-const STORAGE_KEY = 'babyshower_checklist';
+// Firebase sync
+let syncingData = false;
 
-// Inicializar
 document.addEventListener('DOMContentLoaded', function() {
-    loadData();
     setupTabs();
-    updateProgress('baby-shower');
-    updateProgress('mudanza');
-    updateProgress('bebe');
-    updateProgress('depa');
-    updateProgress('manualidades');
-    updateAllStats();
+    loadDataFromFirebase();
 });
 
-// Funcionalidad de tabs
+// Setup tabs
 function setupTabs() {
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -22,18 +15,72 @@ function setupTabs() {
         btn.addEventListener('click', function() {
             const tabName = this.getAttribute('data-tab');
             
-            // Desactivar todos
             tabBtns.forEach(b => b.classList.remove('active'));
             tabContents.forEach(c => c.classList.remove('active'));
             
-            // Activar seleccionado
             this.classList.add('active');
             document.getElementById(tabName).classList.add('active');
         });
     });
 }
 
-// Actualizar progreso
+// Load data from Firebase
+function loadDataFromFirebase() {
+    if (!window.db) {
+        console.log('Firebase not initialized yet');
+        setTimeout(loadDataFromFirebase, 1000);
+        return;
+    }
+
+    updateSyncStatus('🔄 Sincronizando...');
+
+    window.db.ref('tasks').on('value', function(snapshot) {
+        const data = snapshot.val() || {};
+        
+        Object.keys(data).forEach(taskId => {
+            const checkbox = document.querySelector(`[data-task-id="${taskId}"]`);
+            if (checkbox) {
+                checkbox.checked = data[taskId].checked;
+            }
+        });
+
+        updateAllProgress();
+        updateSyncStatus('✅ Sincronizado');
+        
+        setTimeout(() => {
+            const status = document.getElementById('sync-status');
+            if (status) status.textContent = '✅ Sincronizado';
+        }, 2000);
+    });
+}
+
+// Update task in Firebase
+function updateTask(checkbox) {
+    const taskId = checkbox.getAttribute('data-task-id');
+    const isChecked = checkbox.checked;
+
+    if (window.db) {
+        window.db.ref('tasks/' + taskId).set({
+            checked: isChecked,
+            label: checkbox.nextElementSibling.textContent,
+            lastUpdated: new Date().toISOString()
+        });
+    }
+
+    updateAllProgress();
+}
+
+// Update progress for all sections
+function updateAllProgress() {
+    updateProgress('baby-shower');
+    updateProgress('mudanza');
+    updateProgress('bebe');
+    updateProgress('depa');
+    updateProgress('manualidades');
+    updateAllStats();
+}
+
+// Update progress
 function updateProgress(section) {
     const tasks = document.querySelectorAll(`#${section} .task-checkbox`);
     const completed = document.querySelectorAll(`#${section} .task-checkbox:checked`);
@@ -51,12 +98,9 @@ function updateProgress(section) {
     if (percentText) {
         percentText.textContent = percent + '% completado';
     }
-
-    saveData();
-    updateAllStats();
 }
 
-// Actualizar estadísticas generales
+// Update all stats
 function updateAllStats() {
     const allCheckboxes = document.querySelectorAll('.task-checkbox');
     const checkedBoxes = document.querySelectorAll('.task-checkbox:checked');
@@ -66,51 +110,39 @@ function updateAllStats() {
     document.getElementById('pending-tasks').textContent = allCheckboxes.length - checkedBoxes.length;
 }
 
-// Agregar tarea nueva
+// Add new task
 function addTask(section) {
     const taskName = prompt('¿Cuál es la nueva tarea?');
     if (taskName) {
+        const timestamp = Date.now();
+        const taskId = section + '-' + timestamp;
+
         const tasksContainer = document.getElementById(section);
         const newTask = document.createElement('div');
         newTask.className = 'task-item';
         newTask.innerHTML = `
-            <input type="checkbox" class="task-checkbox" onchange="updateProgress('${section}')">
+            <input type="checkbox" class="task-checkbox" data-task-id="${taskId}" onchange="updateTask(this)">
             <label>${taskName}</label>
         `;
         tasksContainer.appendChild(newTask);
-        saveData();
-        updateProgress(section);
+
+        if (window.db) {
+            window.db.ref('tasks/' + taskId).set({
+                checked: false,
+                label: taskName,
+                section: section,
+                createdAt: new Date().toISOString()
+            });
+        }
+
+        updateAllProgress();
     }
 }
 
-// Guardar datos en localStorage
-function saveData() {
-    const data = {};
-    const checkboxes = document.querySelectorAll('.task-checkbox');
-    
-    checkboxes.forEach((checkbox, index) => {
-        data[index] = {
-            checked: checkbox.checked,
-            label: checkbox.nextElementSibling.textContent
-        };
-    });
-    
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-}
-
-// Cargar datos de localStorage
-function loadData() {
-    const data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-    const checkboxes = document.querySelectorAll('.task-checkbox');
-    
-    checkboxes.forEach((checkbox, index) => {
-        if (data[index]) {
-            checkbox.checked = data[index].checked;
-        }
-    });
-}
-
-// Exportar a PDF
-function exportToPDF() {
-    window.print();
+// Update sync status
+function updateSyncStatus(status) {
+    const statusEl = document.getElementById('sync-status');
+    if (statusEl) {
+        statusEl.textContent = status;
+    }
 }
