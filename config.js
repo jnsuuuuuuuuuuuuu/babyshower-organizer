@@ -1,8 +1,5 @@
-// Firebase Configuration
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getDatabase } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
-
-const firebaseConfig = {
+// Firebase Configuration - Using Global Firebase Library
+var firebaseConfig = {
   apiKey: "AIzaSyDdLV2Bh5xuo0Bo7UPPhr7Sy7CqD1q9EJM",
   authDomain: "babyshower-organizer.firebaseapp.com",
   databaseURL: "https://babyshower-organizer-default-rtdb.firebaseio.com",
@@ -14,5 +11,6 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-window.db = getDatabase(app);
+firebase.initializeApp(firebaseConfig);
+window.db = firebase.database();
+console.log('Firebase initialized');

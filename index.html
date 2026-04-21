@@ -669,11 +669,12 @@
         <p>💪 ¡Tú puedes! Falta poco para conocer a tu bebé 👶</p>
     </footer>
 
-        <!-- Firebase Scripts -->
-    <script type="module">
-        import('./config.js').then(() => {
-            import('./script.js');
-        });
-    </script>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js"></script>
+    
+    <!-- Your scripts -->
+    <script src="config.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

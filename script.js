@@ -1,33 +1,33 @@
-import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-database.js";
-
-// Variables globales
+// Global variable
 let db = null;
-let tasksRef = null;
+let isInitialized = false;
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Esperar a que Firebase esté listo
-    setTimeout(() => {
-        initializeApp();
-    }, 500);
+    console.log('DOM Loaded');
+    setupTabs();
+    initializeFirebase();
 });
 
-// Inicializar la app
-function initializeApp() {
-    db = window.db;
-    if (!db) {
-        console.log('Esperando Firebase...');
-        setTimeout(initializeApp, 500);
-        return;
+// Initialize Firebase
+function initializeFirebase() {
+    console.log('Initializing Firebase...');
+    
+    // Esperar a que Firebase esté disponible
+    if (typeof firebase !== 'undefined' && firebase.database) {
+        db = window.db;
+        isInitialized = true;
+        console.log('Firebase is ready');
+        updateSyncStatus('🔄 Cargando datos...');
+        loadDataFromFirebase();
+    } else {
+        console.log('Firebase not ready yet, retrying...');
+        setTimeout(initializeFirebase, 500);
     }
-
-    tasksRef = ref(db, 'tasks');
-    setupTabs();
-    loadDataFromFirebase();
-    updateSyncStatus('✅ Conectado');
 }
 
 // Setup tabs
 function setupTabs() {
+    console.log('Setting up tabs');
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
 
@@ -46,15 +46,17 @@ function setupTabs() {
 
 // Load data from Firebase
 function loadDataFromFirebase() {
-    if (!tasksRef) {
-        console.log('Tasksref no está listo');
+    if (!db) {
+        console.log('DB not ready');
         setTimeout(loadDataFromFirebase, 500);
         return;
     }
 
+    console.log('Loading data from Firebase...');
     updateSyncStatus('🔄 Cargando datos...');
 
-    onValue(tasksRef, (snapshot) => {
+    db.ref('tasks').on('value', function(snapshot) {
+        console.log('Data received:', snapshot.val());
         const data = snapshot.val() || {};
         
         // Cargar todos los checkboxes desde Firebase
@@ -62,37 +64,42 @@ function loadDataFromFirebase() {
             const checkbox = document.querySelector(`[data-task-id="${taskId}"]`);
             if (checkbox) {
                 checkbox.checked = data[taskId].checked;
+                console.log('Updated checkbox:', taskId, data[taskId].checked);
             }
         });
 
         updateAllProgress();
         updateSyncStatus('✅ Sincronizado');
-    }, (error) => {
-        console.error('Error cargando datos:', error);
-        updateSyncStatus('❌ Error de sincronización');
+    }, function(error) {
+        console.error('Error loading data:', error);
+        updateSyncStatus('❌ Error: ' + error.message);
     });
 }
 
 // Update task in Firebase
 function updateTask(checkbox) {
+    if (!isInitialized) {
+        console.log('Firebase not initialized yet');
+        return;
+    }
+
     const taskId = checkbox.getAttribute('data-task-id');
     const isChecked = checkbox.checked;
 
-    if (db) {
-        updateSyncStatus('🔄 Guardando...');
-        
-        const taskRef = ref(db, 'tasks/' + taskId);
-        set(taskRef, {
-            checked: isChecked,
-            label: checkbox.nextElementSibling.textContent,
-            lastUpdated: new Date().toISOString()
-        }).then(() => {
-            updateSyncStatus('✅ Sincronizado');
-        }).catch((error) => {
-            console.error('Error guardando:', error);
-            updateSyncStatus('❌ Error');
-        });
-    }
+    console.log('Updating task:', taskId, isChecked);
+    updateSyncStatus('🔄 Guardando...');
+    
+    db.ref('tasks/' + taskId).set({
+        checked: isChecked,
+        label: checkbox.nextElementSibling.textContent,
+        lastUpdated: new Date().toISOString()
+    }).then(() => {
+        console.log('Task saved successfully');
+        updateSyncStatus('✅ Sincronizado');
+    }).catch((error) => {
+        console.error('Error saving task:', error);
+        updateSyncStatus('❌ Error: ' + error.message);
+    });
 
     updateAllProgress();
 }
@@ -132,15 +139,19 @@ function updateAllStats() {
     const allCheckboxes = document.querySelectorAll('.task-checkbox');
     const checkedBoxes = document.querySelectorAll('.task-checkbox:checked');
     
-    document.getElementById('total-tasks').textContent = allCheckboxes.length;
-    document.getElementById('completed-tasks').textContent = checkedBoxes.length;
-    document.getElementById('pending-tasks').textContent = allCheckboxes.length - checkedBoxes.length;
+    const totalEl = document.getElementById('total-tasks');
+    const completedEl = document.getElementById('completed-tasks');
+    const pendingEl = document.getElementById('pending-tasks');
+    
+    if (totalEl) totalEl.textContent = allCheckboxes.length;
+    if (completedEl) completedEl.textContent = checkedBoxes.length;
+    if (pendingEl) pendingEl.textContent = allCheckboxes.length - checkedBoxes.length;
 }
 
 // Add new task
 function addTask(section) {
     const taskName = prompt('¿Cuál es la nueva tarea?');
-    if (taskName) {
+    if (taskName && taskName.trim()) {
         const timestamp = Date.now();
         const taskId = section + '-' + timestamp;
 
@@ -155,17 +166,17 @@ function addTask(section) {
 
         if (db) {
             updateSyncStatus('🔄 Agregando tarea...');
-            const taskRef = ref(db, 'tasks/' + taskId);
-            set(taskRef, {
+            db.ref('tasks/' + taskId).set({
                 checked: false,
                 label: taskName,
                 section: section,
                 createdAt: new Date().toISOString()
             }).then(() => {
+                console.log('Task added successfully');
                 updateSyncStatus('✅ Sincronizado');
             }).catch((error) => {
-                console.error('Error agregando tarea:', error);
-                updateSyncStatus('❌ Error');
+                console.error('Error adding task:', error);
+                updateSyncStatus('❌ Error: ' + error.message);
             });
         }
 
@@ -178,5 +189,6 @@ function updateSyncStatus(status) {
     const statusEl = document.getElementById('sync-status');
     if (statusEl) {
         statusEl.textContent = status;
+        console.log('Status:', status);
     }
 }
